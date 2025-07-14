@@ -2,12 +2,8 @@ name: user-service CI
 
 on:
   push:
-    paths:
-      - 'user-service/**'
     branches: [ "master" , "feature/*" ]
   pull_request:
-    paths:
-      - 'user-service/**'
     branches: [ "master" ]
 
 jobs:
