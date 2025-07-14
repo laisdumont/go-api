@@ -72,7 +72,7 @@ func (h *UserHandler) UpdateUser(w http.ResponseWriter, r *http.Request) {
 		})
 		return
 	}
-	
+
 	if err := json.NewDecoder(r.Body).Decode(&user); err != nil {
 		http.Error(w, "JSON inválido", http.StatusBadRequest)
 		return

@@ -1,8 +1,8 @@
 package router
 
 import (
-	"go-api/handler"
 	"go-api/auth"
+	"go-api/handler"
 
 	"net/http"
 
@@ -34,13 +34,13 @@ func SetupRoutes(h *handler.UserHandler) http.Handler {
 			r.Delete("/users/{id}", h.DeleteUser)
 		})
 	})
-	
+
 	return r
 }
 
 func simpleLogger(next http.Handler) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		println("➡️ ", r.Method, r.URL.Path)
+		println(r.Method, r.URL.Path)
 		next.ServeHTTP(w, r)
 	})
 }

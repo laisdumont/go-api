@@ -1,12 +1,12 @@
-package auth	
+package auth
 
 import (
-	"os"
-	"time"
 	"context"
-	"net/http"
-	"strings"
 	"github.com/golang-jwt/jwt/v5"
+	"net/http"
+	"os"
+	"strings"
+	"time"
 )
 
 var jwtKey = []byte(os.Getenv("JWT_SECRET"))
