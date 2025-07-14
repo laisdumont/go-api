@@ -8,6 +8,7 @@ import (
 	"go-api/service"
 	"log"
 	"net/http"
+	"os"
 )
 
 func main() {
@@ -18,6 +19,20 @@ func main() {
 	h := handler.NewUserHandler(svc)
 	r := router.SetupRoutes(h)
 
-	log.Println("Servidor ouvindo em http://localhost:8080")
-	http.ListenAndServe(":8080", r)
+	host := os.Getenv("APP_HOST")
+	if host == "" {
+		host = "localhost"
+	}
+
+	port := os.Getenv("APP_PORT")
+	if port == "" {
+		port = "8080"
+	}
+
+	address := host + ":" + port
+
+	log.Printf("Servidor ouvindo em http://%s\n", address)
+	if err := http.ListenAndServe(address, r); err != nil {
+		log.Fatalf("Erro ao iniciar servidor: %v", err)
+	}
 }
