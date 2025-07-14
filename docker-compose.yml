@@ -1,0 +1,38 @@
+services:
+  api:
+    build: .
+    container_name: go-api
+    ports:
+      - "8080:8080"
+    depends_on:
+      - db
+    env_file:
+      - .env
+    restart: always
+    networks:
+      - go-api
+
+  db:
+    image: mysql/mysql-server:8.0
+    container_name: mysql-go
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: '${MYSQL_ROOT_PASSWORD}'
+      MYSQL_ROOT_HOST: '%'
+      MYSQL_DATABASE: '${MYSQL_DATABASE}'
+      MYSQL_USER: '${MYSQL_USER}'
+      MYSQL_PASSWORD: '${MYSQL_PASSWORD}'
+      MYSQL_ALLOW_EMPTY_PASSWORD: 1
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+    networks:
+      - go-api
+
+volumes:
+  mysql_data:
+
+networks:
+  go-api:
+    driver: bridge

@@ -1,0 +1,16 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Rodar com Air",
+      "type": "shell",
+      "command": "/home/lucaslemo/go/bin/air",
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "problemMatcher": [],
+      "detail": "Roda o servidor com hot reload via Air"
+    }
+  ]
+}
